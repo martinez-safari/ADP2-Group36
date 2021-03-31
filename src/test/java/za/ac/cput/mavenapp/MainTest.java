@@ -21,8 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest
 {
-    public MainTest()
-    {
+
+    private static short add(int a, int b) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Test
@@ -30,5 +31,6 @@ public class MainTest
     {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+        assertEquals(200, MainTest.add(100, 100) );
     }   
 }
