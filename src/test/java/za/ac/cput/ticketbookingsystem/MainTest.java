@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author msaidi
+ * @author Martinez Safari 219325332
  */
 public class MainTest {
                 

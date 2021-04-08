@@ -18,7 +18,7 @@ package za.ac.cput.ticketbookingsystem;
 
 /**
  *
- * @author Martinez Safari
+ * @author Martinez Safari 219325332
  */
 public class User {
 
