@@ -1,3 +1,5 @@
+package za.ac.cput.ticketbookingsystem;
+
 /*
   *HEADER
  * Ticket Booking System
@@ -14,7 +16,7 @@
  * JDK: 11
  * JUnit: 5.7.0
  */
-package za.ac.cput.ticketbookingsystem;
+
 
 /**
  *
