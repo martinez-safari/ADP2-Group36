@@ -27,8 +27,10 @@ import javax.swing.border.TitledBorder;
 
 public class Login extends JFrame {
     private JLabel user;
+    private JLabel errorUser;
     private JLabel example;
     private JLabel pass;
+    private JLabel errorPass;
     private JTextField userText;
     private JPasswordField Password;
     
@@ -61,10 +63,16 @@ Login(){
     userText.setBounds(100, 50, 170, 25);   
     panel.add(userText);
     
-    example= new JLabel("Example@gmail.com");
-    example.setBounds(275, 50, 170, 25);
-    example.setForeground(Color.gray);
-    panel.add(example);
+    errorUser = new JLabel("*user@gmail.com");
+    errorUser.setForeground(Color.red);
+    errorUser.setBounds(275, 50, 170, 25);
+    errorUser.setVisible(false);
+    panel.add(errorUser);
+    
+    //example= new JLabel("Example@gmail.com");
+    //example.setBounds(275, 50, 170, 25);
+    //example.setForeground(Color.gray);
+    //panel.add(example);
     
     pass= new JLabel("Password:");
     pass.setBounds(15, 95, 90, 25); 
@@ -73,6 +81,12 @@ Login(){
     Password= new JPasswordField(10);
     Password.setBounds(100, 95, 170, 25);
     panel.add(Password);
+    
+    errorPass = new JLabel("*required");
+    errorPass.setForeground(Color.red);
+    errorPass.setBounds(275, 95, 170, 25);
+    errorPass.setVisible(false);
+    panel.add(errorPass);
          
     blogin.setBounds(40,185,90,20);
     bclear.setBounds(210,185,90,20);
@@ -85,20 +99,32 @@ Login(){
     getContentPane().add(panel);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
     setVisible(true);
-    actionlogin();
+    actionlogin();   
 }
+public boolean isInputValid() {
+        boolean valid = true;
+        
+        if (userText.getText().equals("")) {
+            valid = false;
+             errorUser.setVisible(true);
+        } else
+             errorUser.setVisible(false);
+        
+        if (Password.getText().equals("")) {
+            valid = false;
+            errorPass.setVisible(true);
+        } else
+            errorPass.setVisible(false);
+         return valid;
+    }
+
 public void actionlogin(){
     
     blogin.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            String user= userText.getText();
-            String pass= Password.getText();
+   
+             if (isInputValid()) {
             
-            if(user.equals("") && pass.equals("")){
-               blogin.setEnabled(false);   
-            }
-            else{
-                blogin.setEnabled(true);
                 dispose();
                 new Register().setVisible(true);
             }  
