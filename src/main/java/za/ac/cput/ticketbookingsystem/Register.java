@@ -203,7 +203,7 @@ public class Register extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
               dispose();
-               new Login().setVisible(true);
+               //new Login().setVisible(true);
         }
       });
       bnext.addActionListener(new ActionListener() {
