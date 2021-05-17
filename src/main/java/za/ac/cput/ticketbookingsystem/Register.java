@@ -35,6 +35,11 @@ public class Register extends JFrame {
     private JLabel address;
     private JLabel errorAddress;
     private JTextField addressTxt;
+    
+    public static void main(String[] args) {
+    
+    Register frameTabel = new Register();
+}
    
 
     JButton bback = new JButton("Back");
@@ -52,7 +57,7 @@ public class Register extends JFrame {
         panel.setBackground(Color.LIGHT_GRAY);
 
         panel.setBorder(BorderFactory.createTitledBorder(
-        BorderFactory.createEtchedBorder(), "Login here", TitledBorder.CENTER,
+        BorderFactory.createEtchedBorder(), "Sign up", TitledBorder.CENTER,
         TitledBorder.TOP));
 
         name= new JLabel("Name");
