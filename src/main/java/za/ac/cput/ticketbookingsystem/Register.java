@@ -221,6 +221,7 @@ public class Register extends JFrame {
             if (isInputValid()) {
    
              JOptionPane.showMessageDialog(null,"Thank you for submitting!",  " MsgBox",JOptionPane.PLAIN_MESSAGE);
+             
             }
         }
       });
