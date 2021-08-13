@@ -230,7 +230,7 @@ public class AddBooking extends javax.swing.JFrame {
           String customer= customerTxt.getText().toString();
          
           if(ticket.equals("")||(flight.equals("")||(customer.equals("")))){
-               JOptionPane.showMessageDialog(null,"Information incomplete");
+               JOptionPane.showMessageDialog(null,"Information incomplete ");
           }
           else{
                JOptionPane.showMessageDialog(null,"Added");

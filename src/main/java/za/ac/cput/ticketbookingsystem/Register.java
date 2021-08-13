@@ -240,7 +240,7 @@ public class Register extends javax.swing.JFrame {
                 Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/customerDB", "registration","123");
                 Statement st=con.createStatement();
                 st.execute("insert into customer values ('"+Name+"','"+Surname+"','"+Id+"','"+Email+"','"+Phone+"','"+Address+"')");
-                JOptionPane.showMessageDialog(null,"Recorded ");
+                JOptionPane.showMessageDialog(null,"Recorded");
                    
               }
 
