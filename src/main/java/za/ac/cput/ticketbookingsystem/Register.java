@@ -1,229 +1,353 @@
-/**
- *
- * @author Martinez safari 219325332
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package za.ac.cput.ticketbookingsystem;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
+import java.awt.HeadlessException;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
-public class Register extends JFrame { 
-    private JLabel name;
-    private JLabel errorName;
-    private JTextField nameTxt;
+/**
+ *
+ * @author Martinez safari
+ */
+public class Register extends javax.swing.JFrame {
     
-    private JLabel surname;
-    private JLabel errorSurname;
-    private JTextField surnameTxt;
+    Connection connect = null;
+    ResultSet rst=null;
+    PreparedStatement pst=null;
     
-    private JLabel gender;
-    private JRadioButton male;
-    private JRadioButton female;
-    private ButtonGroup group;
+     Connection conn=null;
     
-    private JLabel id;
-    private JLabel errorId;
-    private JTextField idTxt;
-    
-    private JLabel contact;
-    private JLabel errorContact;
-    private JTextField contactTxt;
-    
-    private JLabel address;
-    private JLabel errorAddress;
-    private JTextField addressTxt;
-    
-    public static void main(String[] args) {
-    
-    Register frameTabel = new Register();
-}
-   
-
-    JButton bback = new JButton("Back");
-    JButton bnext = new JButton("Next");
-    JButton bsubmit = new JButton("Submit");
-    
-    JPanel panel = new JPanel();
-
-    Register(){
-
-        super("Register");
-        setSize(500,400);
-        setLocation(300,180);
-        panel.setLayout (null);
-        panel.setBackground(Color.LIGHT_GRAY);
-
-        panel.setBorder(BorderFactory.createTitledBorder(
-        BorderFactory.createEtchedBorder(), "Sign up", TitledBorder.CENTER,
-        TitledBorder.TOP));
-
-        name= new JLabel("Name");
-        name.setBounds(15, 30, 85, 30);
-        panel.add(name);
-        
-        nameTxt= new JTextField();
-        nameTxt.setBounds(150, 30, 175, 30);
-        panel.add(nameTxt);
-      
-        errorName = new JLabel("*required");
-        errorName.setForeground(Color.red);
-        errorName.setBounds(325, 30, 85, 30);
-        errorName.setVisible(false);
-        panel.add(errorName);
-
-        surname= new JLabel("Surname");
-        surname.setBounds(15, 75, 85, 30);
-        panel.add(surname);
-
-        surnameTxt= new JTextField();
-        surnameTxt.setBounds(150, 75, 175, 30);
-        panel.add(surnameTxt);
-        
-        errorSurname = new JLabel("*required");
-        errorSurname.setForeground(Color.red);
-        errorSurname.setBounds(325, 75, 85, 30);
-        errorSurname.setVisible(false);
-        panel.add(errorSurname);
-
-        gender= new JLabel("Gender");
-        gender.setBounds(15, 115, 85, 30);
-        panel.add(gender);
-
-        male = new JRadioButton("male", true);
-        female = new JRadioButton("female");
-
-        group = new ButtonGroup();
-        group.add(male);
-        group.add(female);
-
-        panel.add(male);
-        panel.add(female);
-
-        male.setBounds(150, 115, 65, 30);    
-        female.setBounds(260, 115, 65, 30);  
-
-        id= new JLabel("ID Number");
-        id.setBounds(15, 155, 85, 30);
-        panel.add(id);
-
-        idTxt= new JTextField();
-        idTxt.setBounds(150, 155, 175, 35);
-        panel.add(idTxt);
-        
-        errorId = new JLabel("*required");
-        errorId.setForeground(Color.red);
-        errorId.setBounds(325, 155, 85, 30);
-        errorId.setVisible(false);
-        panel.add(errorId);
-
-        contact= new JLabel("Phone Number");
-        contact.setBounds(15, 205, 85, 30);
-        panel.add(contact);
-
-        contactTxt= new JTextField();
-        contactTxt.setBounds(150, 205, 175, 30);
-        panel.add(contactTxt);
-        
-        errorContact = new JLabel("*required");
-        errorContact.setForeground(Color.red);
-        errorContact.setBounds(325, 205, 85, 30);
-        errorContact.setVisible(false);
-        panel.add(errorContact);
-
-        address= new JLabel("Address");
-        address.setBounds(15, 255, 85, 30);
-        panel.add(address);
-
-        addressTxt= new JTextField();
-        addressTxt.setBounds(150, 255, 175, 30);
-        panel.add(addressTxt);
-        
-        errorAddress = new JLabel("*required");
-        errorAddress.setForeground(Color.red);
-        errorAddress.setBounds(325, 255, 85, 30);
-        errorAddress.setVisible(false);
-        panel.add(errorAddress);
-        
-        bback.setBounds(15,320,100,20);
-        bnext.setBounds(375,320,100,20);
-        bsubmit.setBounds(200,320,100,20);
-
-        panel.add(bback);
-        panel.add(bnext);
-        panel.add(bsubmit);
-
-
-        getContentPane().add(panel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        actionRegister();
+    public static Connection connDB()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/connector","root","root");
+            //connector > database name
+            // root > username mysql
+            // "root" > password mysql
+            
+            return conn;
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
     }
-    public boolean isInputValid() {
-        boolean valid = true;
-        
-        if (nameTxt.getText().equals("")) {
-            valid = false;
-             errorName.setVisible(true);
-        } else
-             errorName.setVisible(false);
-        
-        if (surnameTxt.getText().equals("")) {
-            valid = false;
-            errorSurname.setVisible(true);
-        } else
-            errorSurname.setVisible(false);
-        
-        if (idTxt.getText().equals("")) {
-            valid = false;
-            errorId.setVisible(true);
-        } else
-            errorId.setVisible(false);
-         
-        if (contactTxt.getText().equals("")) {
-            valid = false;
-            errorContact.setVisible(true);
-        } else
-            errorContact.setVisible(false);
-        
-        if (addressTxt.getText().equals("")) {
-            valid = false;
-            errorAddress.setVisible(true);
-        } else
-            errorAddress.setVisible(false);
+
+
+
+    
+    public Register() {
+        initComponents();
+        connect = Register.connDB();
+    }
+    
   
-         return valid;
-    }
- 
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-    private void actionRegister() {
-        bback.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-              dispose();
-               //new Login().setVisible(true);
-        }
-      });
-      bnext.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (isInputValid()) {
-              dispose();
-               //new page().setVisible(true);
+        jPanel1 = new javax.swing.JPanel();
+        previous = new javax.swing.JButton();
+        submit = new javax.swing.JButton();
+        menu = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        next = new javax.swing.JButton();
+        namePanel = new javax.swing.JLabel();
+        nameTxt = new javax.swing.JTextField();
+        surnamePanel = new javax.swing.JLabel();
+        surnameTxt = new javax.swing.JTextField();
+        idPanel = new javax.swing.JLabel();
+        idTxt = new javax.swing.JTextField();
+        emailPanel = new javax.swing.JLabel();
+        emailTxt = new javax.swing.JTextField();
+        phonePanel = new javax.swing.JLabel();
+        phoneTxt = new javax.swing.JTextField();
+        addressPanel = new javax.swing.JLabel();
+        addressTxt = new javax.swing.JTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+
+        previous.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        previous.setText("Previous");
+        previous.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousActionPerformed(evt);
             }
-        }
-      });
-      bsubmit.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (isInputValid()) {
-   
-             JOptionPane.showMessageDialog(null,"Thank you for submitting!",  " MsgBox",JOptionPane.PLAIN_MESSAGE);
-             
+        });
+
+        submit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
             }
+        });
+
+        menu.setBackground(new java.awt.Color(0, 0, 204));
+
+        title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setText("Registration Form");
+
+        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
+        menu.setLayout(menuLayout);
+        menuLayout.setHorizontalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
+        );
+        menuLayout.setVerticalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        next.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        next.setText("Next");
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
+
+        namePanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        namePanel.setForeground(new java.awt.Color(255, 255, 255));
+        namePanel.setText("Name:");
+
+        surnamePanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        surnamePanel.setForeground(new java.awt.Color(255, 255, 255));
+        surnamePanel.setText("Surname:");
+
+        idPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        idPanel.setForeground(new java.awt.Color(255, 255, 255));
+        idPanel.setText("ID Number:");
+
+        emailPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        emailPanel.setForeground(new java.awt.Color(255, 255, 255));
+        emailPanel.setText("Email:");
+
+        phonePanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        phonePanel.setForeground(new java.awt.Color(255, 255, 255));
+        phonePanel.setText("Phone Number:");
+
+        addressPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        addressPanel.setForeground(new java.awt.Color(255, 255, 255));
+        addressPanel.setText("Address:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(previous)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submit)
+                        .addGap(128, 128, 128)
+                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(addressPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(phonePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                        .addComponent(emailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(idPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phoneTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addressTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(surnamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(namePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(138, 138, 138))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(surnamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phonePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addressPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(previous)
+                            .addComponent(next, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                        .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(submit)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
+        // TODO add your handling code here:
+        dispose();
+         new AddBooking().setVisible(true);// testing
+    }//GEN-LAST:event_previousActionPerformed
+
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        // TODO add your handling code here:
+        String Name= nameTxt.getText().toString();
+        String Surname= surnameTxt.getText().toString();
+        String Id= idTxt.getText().toString();
+        String Email= emailTxt.getText().toString();
+        String Phone= phoneTxt.getText().toString();
+        String Address= addressTxt.getText().toString();
+        if(Name.equals("")|| (Surname.equals(""))||(Id.equals(""))||(Email.equals("")||(Phone.equals(""))||(Address.equals("")))){
+            JOptionPane.showMessageDialog(null,"Please complete all the fill");
         }
-      });
+        else{
+               JOptionPane.showMessageDialog(null,"Thank you for your submission");
+          }
+        
+        try {
+            String sql = "insert into registration (Id,name,Surname,Email,Phone,Address) values(?,?,?,?,?,?)";  
+            // registration > table name in your database
+            // Id,name,Surname,Email,Phone,Address > field name in your tables.
+            pst = connect.prepareStatement(sql);
+            pst.setString(1, nameTxt.getText());
+            pst.setString(2, surnameTxt.getText());
+            pst.setString(3, idTxt.getText());
+            pst.setString(4, emailTxt.getText());
+            pst.setString(5, phoneTxt.getText());
+            pst.setString(6, addressTxt.getText());
+            // id_text,user_text,pass_text,age_text,email_text > jtextfields name
+
+
+            pst.execute();
+
+            JOptionPane.showMessageDialog(null, "Success !");
+        } catch (SQLException | HeadlessException e) {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+
+
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_submitActionPerformed
+
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        // TODO add your handling code here:
+        dispose();
+         new AddBooking().setVisible(true);// testing
+    }//GEN-LAST:event_nextActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Register().setVisible(true);
+            }
+        });
     }
- }      
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addressPanel;
+    private javax.swing.JTextField addressTxt;
+    private javax.swing.JLabel emailPanel;
+    private javax.swing.JTextField emailTxt;
+    private javax.swing.JLabel idPanel;
+    private javax.swing.JTextField idTxt;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel menu;
+    private javax.swing.JLabel namePanel;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JButton next;
+    private javax.swing.JLabel phonePanel;
+    private javax.swing.JTextField phoneTxt;
+    private javax.swing.JButton previous;
+    private javax.swing.JButton submit;
+    private javax.swing.JLabel surnamePanel;
+    private javax.swing.JTextField surnameTxt;
+    private javax.swing.JLabel title;
+    // End of variables declaration//GEN-END:variables
+}
