@@ -232,17 +232,19 @@ public class Register extends javax.swing.JFrame {
             String Email= emailTxt.getText().toString();
             String Phone= phoneTxt.getText().toString();
             String Address= addressTxt.getText().toString();
+            
             if(Name.equals("")|| (Surname.equals(""))||(Id.equals(""))||(Email.equals("")||(Phone.equals(""))||(Address.equals("")))){
                 JOptionPane.showMessageDialog(null,"Please complete all the fill");
             }
             else{
-                   JOptionPane.showMessageDialog(null,"Thank you for your submission");
+                Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/customerDB", "registration","123");
+                Statement st=con.createStatement();
+                st.execute("insert into customer values ('"+Name+"','"+Surname+"','"+Id+"','"+Email+"','"+Phone+"','"+Address+"')");
+                JOptionPane.showMessageDialog(null,"Recorded ");
+                   
               }
 
-            Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/customerDB", "registration","123");
-            Statement st=con.createStatement();
-            st.execute("insert into customer values ('"+Name+"','"+Surname+"','"+Id+"','"+Email+"','"+Phone+"','"+Address+"')");
-            JOptionPane.showMessageDialog(null,"Recorded ");
+           
             
         } catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
