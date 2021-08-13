@@ -1,48 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package za.ac.cput.ticketbookingsystem;
-
-import java.awt.HeadlessException;
-import java.sql.*;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Martinez safari
  */
+package za.ac.cput.ticketbookingsystem;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class Register extends javax.swing.JFrame {
     
-    Connection connect = null;
-    ResultSet rst=null;
-    PreparedStatement pst=null;
-    
-     Connection conn=null;
-    
-    public static Connection connDB()
-    {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/connector","root","root");
-            //connector > database name
-            // root > username mysql
-            // "root" > password mysql
-            
-            return conn;
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return null;
-    }
-
-
-
     
     public Register() {
         initComponents();
-        connect = Register.connDB();
+       
     }
     
   
@@ -247,45 +223,30 @@ public class Register extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-        String Name= nameTxt.getText().toString();
-        String Surname= surnameTxt.getText().toString();
-        String Id= idTxt.getText().toString();
-        String Email= emailTxt.getText().toString();
-        String Phone= phoneTxt.getText().toString();
-        String Address= addressTxt.getText().toString();
-        if(Name.equals("")|| (Surname.equals(""))||(Id.equals(""))||(Email.equals("")||(Phone.equals(""))||(Address.equals("")))){
-            JOptionPane.showMessageDialog(null,"Please complete all the fill");
+        try{
+            
+        
+            String Name= nameTxt.getText().toString();
+            String Surname= surnameTxt.getText().toString();
+            String Id= idTxt.getText().toString();
+            String Email= emailTxt.getText().toString();
+            String Phone= phoneTxt.getText().toString();
+            String Address= addressTxt.getText().toString();
+            if(Name.equals("")|| (Surname.equals(""))||(Id.equals(""))||(Email.equals("")||(Phone.equals(""))||(Address.equals("")))){
+                JOptionPane.showMessageDialog(null,"Please complete all the fill");
+            }
+            else{
+                   JOptionPane.showMessageDialog(null,"Thank you for your submission");
+              }
+
+            Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/customerDB", "registration","123");
+            Statement st=con.createStatement();
+            st.execute("insert into customer values ('"+Name+"','"+Surname+"','"+Id+"','"+Email+"','"+Phone+"','"+Address+"')");
+            JOptionPane.showMessageDialog(null,"Recorded ");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else{
-               JOptionPane.showMessageDialog(null,"Thank you for your submission");
-          }
-        
-        try {
-            String sql = "insert into registration (Id,name,Surname,Email,Phone,Address) values(?,?,?,?,?,?)";  
-            // registration > table name in your database
-            // Id,name,Surname,Email,Phone,Address > field name in your tables.
-            pst = connect.prepareStatement(sql);
-            pst.setString(1, nameTxt.getText());
-            pst.setString(2, surnameTxt.getText());
-            pst.setString(3, idTxt.getText());
-            pst.setString(4, emailTxt.getText());
-            pst.setString(5, phoneTxt.getText());
-            pst.setString(6, addressTxt.getText());
-            // id_text,user_text,pass_text,age_text,email_text > jtextfields name
-
-
-            pst.execute();
-
-            JOptionPane.showMessageDialog(null, "Success !");
-        } catch (SQLException | HeadlessException e) {
-                        JOptionPane.showMessageDialog(null, e);
-                    }
-
-
-        
-        
-        
-        
         
     }//GEN-LAST:event_submitActionPerformed
 
