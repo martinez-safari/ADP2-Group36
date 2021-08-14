@@ -219,7 +219,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_previousActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
+        
         try{
             
         
