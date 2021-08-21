@@ -33,7 +33,7 @@ public class Bookings extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         dateTxt = new com.toedter.calendar.JDateChooser();
         bookingTime = new javax.swing.JLabel();
-        bookingTimeTxt = new javax.swing.JPanel();
+        bookingTimeTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,17 +103,6 @@ public class Bookings extends javax.swing.JFrame {
         bookingTime.setForeground(new java.awt.Color(255, 255, 255));
         bookingTime.setText("Booking Time:");
 
-        javax.swing.GroupLayout bookingTimeTxtLayout = new javax.swing.GroupLayout(bookingTimeTxt);
-        bookingTimeTxt.setLayout(bookingTimeTxtLayout);
-        bookingTimeTxtLayout.setHorizontalGroup(
-            bookingTimeTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        bookingTimeTxtLayout.setVerticalGroup(
-            bookingTimeTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -142,7 +131,7 @@ public class Bookings extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                            .addComponent(bookingTimeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(bookingTimeTxt))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -162,9 +151,9 @@ public class Bookings extends javax.swing.JFrame {
                     .addComponent(bookingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bookingTimeTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookingTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookingTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +221,7 @@ public class Bookings extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JLabel bookingDate;
     private javax.swing.JLabel bookingTime;
-    private javax.swing.JPanel bookingTimeTxt;
+    private javax.swing.JTextField bookingTimeTxt;
     private javax.swing.JLabel customerId;
     private javax.swing.JTextField customerTxt;
     private com.toedter.calendar.JDateChooser dateTxt;
