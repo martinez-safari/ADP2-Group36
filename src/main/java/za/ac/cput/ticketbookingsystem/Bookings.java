@@ -196,7 +196,7 @@ public class Bookings extends javax.swing.JFrame {
           String bookingDate = ((JTextField)dateTxt.getDateEditor().getUiComponent()).getText();
           String bookingTime= timeTxt.getSelectedItem().toString();
           
-          if(ticketID.equals("")||(customerID.equals(""))){
+          if(ticketID.equals("")||(customerID.equals(""))||(bookingDate.equals(""))||(bookingTime.equals(""))){
                JOptionPane.showMessageDialog(null,"Information incomplete ");
            }
          else{
