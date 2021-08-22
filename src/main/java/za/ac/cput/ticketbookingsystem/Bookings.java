@@ -204,6 +204,7 @@ public class Bookings extends javax.swing.JFrame {
               //ARBS: DB name
               //ROOT username
               //root: password
+              
             Statement insertStatment=con.createStatement();
             insertStatment.execute("insert into bookings values ('"+customerID+"',"
                     + "'"+ticketID+"','"+bookingDate+"','"+bookingTime+"')");
