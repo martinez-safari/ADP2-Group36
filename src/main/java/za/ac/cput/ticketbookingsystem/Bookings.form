@@ -80,7 +80,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="dateTxt" pref="248" max="32767" attributes="0"/>
-                              <Component id="bookingTimeTxt" max="32767" attributes="0"/>
+                              <Component id="timeTxt" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -110,9 +110,9 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bookingTime" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="bookingTimeTxt" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="timeTxt" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="previousButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="addButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -249,7 +249,23 @@
             <Property name="text" type="java.lang.String" value="Booking Time:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="bookingTimeTxt">
+        <Component class="javax.swing.JComboBox" name="timeTxt">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="7">
+                <StringItem index="0" value="None"/>
+                <StringItem index="1" value="6-7AM"/>
+                <StringItem index="2" value="8-9AM"/>
+                <StringItem index="3" value="10-11AM"/>
+                <StringItem index="4" value="13-14PM"/>
+                <StringItem index="5" value="15-16PM"/>
+                <StringItem index="6" value="17-18PM"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

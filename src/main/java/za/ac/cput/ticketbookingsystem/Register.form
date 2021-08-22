@@ -46,21 +46,10 @@
               <Component id="menu" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="surnamePanel" min="-2" pref="171" max="-2" attributes="0"/>
-                          <EmptySpace pref="49" max="32767" attributes="0"/>
-                          <Component id="surnameTxt" min="-2" pref="257" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="namePanel" min="-2" pref="171" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="nameTxt" min="-2" pref="257" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="idPanel" min="-2" pref="171" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="idTxt" min="-2" pref="257" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -69,23 +58,29 @@
                               <Component id="phonePanel" min="-2" pref="171" max="-2" attributes="0"/>
                               <Component id="genderPanel" min="-2" pref="171" max="-2" attributes="0"/>
                               <Component id="previous" min="-2" max="-2" attributes="0"/>
+                              <Component id="surnamePanel" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                              <Component id="idPanel" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="emailTxt" alignment="1" pref="257" max="32767" attributes="0"/>
-                              <Component id="phoneTxt" alignment="1" pref="257" max="32767" attributes="0"/>
-                              <Component id="passwordTxt" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="submit" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="idTxt" min="-2" pref="257" max="-2" attributes="0"/>
+                              <Component id="surnameTxt" min="-2" pref="257" max="-2" attributes="0"/>
+                              <Component id="nameTxt" alignment="0" min="-2" pref="257" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="emailTxt" alignment="1" pref="257" max="32767" attributes="0"/>
+                                  <Component id="phoneTxt" alignment="1" pref="257" max="32767" attributes="0"/>
+                                  <Component id="passwordTxt" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="genderTxt" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="genderTxt" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="next" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="submit" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="next" min="-2" pref="83" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -100,51 +95,46 @@
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nameTxt" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="namePanel" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="nameTxt" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="surnamePanel" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="surnameTxt" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="emailPanel" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="emailTxt" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="emailPanel" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="emailTxt" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="passwordTxt" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="phoneTxt" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="passwordPanel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="passwordTxt" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="passwordPanel" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="phonePanel" min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="genderTxt" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="genderPanel" min="-2" pref="34" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="genderPanel" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="previous" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="submit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="next" max="32767" attributes="0"/>
+                      <Component id="previous" min="-2" max="-2" attributes="0"/>
+                      <Component id="next" alignment="0" max="32767" attributes="0"/>
+                      <Component id="submit" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

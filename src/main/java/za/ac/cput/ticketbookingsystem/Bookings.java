@@ -33,7 +33,7 @@ public class Bookings extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         dateTxt = new com.toedter.calendar.JDateChooser();
         bookingTime = new javax.swing.JLabel();
-        bookingTimeTxt = new javax.swing.JTextField();
+        timeTxt = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +103,8 @@ public class Bookings extends javax.swing.JFrame {
         bookingTime.setForeground(new java.awt.Color(255, 255, 255));
         bookingTime.setText("Booking Time:");
 
+        timeTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "6-7AM", "8-9AM", "10-11AM", "13-14PM", "15-16PM", "17-18PM" }));
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -131,7 +133,7 @@ public class Bookings extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                            .addComponent(bookingTimeTxt))))
+                            .addComponent(timeTxt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -153,8 +155,8 @@ public class Bookings extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bookingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookingTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(timeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,15 +194,20 @@ public class Bookings extends javax.swing.JFrame {
           String ticketID= ticketTxt.getText().toString();
           String customerID= customerTxt.getText().toString();
           String bookingDate = ((JTextField)dateTxt.getDateEditor().getUiComponent()).getText();
+          String bookingTime= timeTxt.getSelectedItem().toString();
           
           if(ticketID.equals("")||(customerID.equals(""))){
                JOptionPane.showMessageDialog(null,"Information incomplete ");
            }
          else{
-            Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/customerDB", "registration","123");
+            Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/ARBS", "ROOT","root");
+              //ARBS: DB name
+              //ROOT username
+              //root: password
             Statement insertStatment=con.createStatement();
-            insertStatment.execute("insert into bookings values ('"+customerID+"','"+ticketID+"','"+bookingDate+"')");
-            JOptionPane.showMessageDialog(null,"Recorded");
+            insertStatment.execute("insert into bookings values ('"+customerID+"',"
+                    + "'"+ticketID+"','"+bookingDate+"','"+bookingTime+"')");
+            JOptionPane.showMessageDialog(null,"Added");
               
           } 
         } catch (SQLException ex) {
@@ -221,7 +228,6 @@ public class Bookings extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JLabel bookingDate;
     private javax.swing.JLabel bookingTime;
-    private javax.swing.JTextField bookingTimeTxt;
     private javax.swing.JLabel customerId;
     private javax.swing.JTextField customerTxt;
     private com.toedter.calendar.JDateChooser dateTxt;
@@ -230,6 +236,7 @@ public class Bookings extends javax.swing.JFrame {
     private javax.swing.JButton previousButton;
     private javax.swing.JLabel ticketId;
     private javax.swing.JTextField ticketTxt;
+    private javax.swing.JComboBox<String> timeTxt;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JLabel titleTxt;
     // End of variables declaration//GEN-END:variables
