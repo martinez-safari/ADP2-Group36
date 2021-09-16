@@ -261,8 +261,22 @@ public class Register extends javax.swing.JFrame {
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         
-        dispose();
-         new Bookings().setVisible(true);// testing
+        String FName= nameTxt.getText().toString();
+        String Surname= surnameTxt.getText().toString();
+        String CustomerID= idTxt.getText().toString();
+        String Email= emailTxt.getText().toString();
+        String Password= passwordTxt.getText().toString();
+        String PhoneNumber= phoneTxt.getText().toString();
+        String Gender= genderTxt.getSelectedItem().toString();
+        
+        if(FName.equals("")|| (Surname.equals(""))||(CustomerID.equals(""))||(Email.equals("")||(Password.equals(""))||
+                    (PhoneNumber.equals(""))||(Gender.equals("")))){
+                JOptionPane.showMessageDialog(null,"Please complete all the fill");
+        }
+        else{
+            dispose();
+            new Bookings().setVisible(true);// testing
+        }
     }//GEN-LAST:event_nextActionPerformed
 
     private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
